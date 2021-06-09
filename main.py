@@ -3,6 +3,7 @@ import tkinter as gui
 
 
 root=gui.Tk()
+root.configure(background='black')
 root.title("Github-TraningData-Collector-for-pythonTransformers")
 root.geometry('700x450')
 
@@ -11,6 +12,7 @@ access_token_string="invalid"
 ##Below code is for fetching the github access token from gui
 token_var=gui.StringVar()
 token_label = gui.Label(root, text = 'Github-Access-Token', font=('calibre',10, 'bold'))
+token_label.configure(background='black',foreground='white')
 token_label.pack()
 
 token_entry = gui.Entry(root,textvariable = token_var, font=('calibre',10,'normal'))
@@ -36,8 +38,10 @@ def getaccess():
 
 
 
-btnRead=gui.Button(root, height=1, width=10, text="Read", command=getaccess)
-btnRead.pack()
+btnRead=gui.Button(root, height=1, width=20, text="Read Access Token", command=getaccess)
+btnRead.configure(activebackground="yellow")
+btnRead.pack(pady=5)
+
 
 root.mainloop()
 
