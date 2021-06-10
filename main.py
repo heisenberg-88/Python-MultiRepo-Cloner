@@ -1,3 +1,4 @@
+from tkinter.constants import DISABLED, END, RIGHT, Y
 from github import Github
 import tkinter as gui
 
@@ -42,6 +43,10 @@ btnRead=gui.Button(root, height=1, width=20, text="Read Access Token", command=g
 btnRead.configure(activebackground="yellow")
 btnRead.pack(pady=5)
 
+output = gui.Text(root, height = 20, width = 85, background = "blue")
+output.insert(END,"Hello World","bold")
+output.config(state=DISABLED)
+output.pack()
 
 root.mainloop()
 
