@@ -5,7 +5,7 @@ from github import Github
 import tkinter as gui
 import threading
 import time
-
+from tkinter import messagebox
 
 root=gui.Tk()
 root.configure(background='black')
@@ -60,8 +60,13 @@ def getaccess():
 def threadcreation():
     t=threading.Thread(target=getaccess)
     t.start()
+
+def showWarning():
+    messagebox.showwarning('WAIT !!!',"Script is running ,logs will be shown automatically in BLUE LogBox")
+
+commandsList=lambda:[showWarning(),threadcreation()]
         
-btnRead=gui.Button(root, height=1, width=20, text="Read Access Token", command=threadcreation )
+btnRead=gui.Button(root, height=1, width=20, text="Read Access Token", command=commandsList )
 btnRead.configure(activebackground="yellow")
 btnRead.pack(pady=5)
 
