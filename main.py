@@ -6,8 +6,11 @@ import tkinter as gui
 import threading
 from tkinter import StringVar, messagebox
 from tkinter import filedialog
+import os
+
 
 root=gui.Tk()
+root.iconbitmap('n.ico')
 root.configure(background='black')
 root.title("Github-TraningData-Collector-for-pythonTransformers")
 root.geometry('700x700')
@@ -65,6 +68,8 @@ directory_text_show=gui.Text(root,height=1,width=75,background='yellow',foregrou
 def getaccess():
     access_token_string=token_var.get()
 
+    currentfolder=directory_text_show.get("1.0",'end-1c')
+
     ghtoken=Github(str(access_token_string))
 
     output.tag_config('warning', background="yellow", foreground="red")
@@ -79,6 +84,8 @@ def getaccess():
         if(i==query_num_loop.get()):
             break
         output.insert('1.0',f"{file.name}  cloneurl: {file.clone_url} \n")
+        os.system(f"git clone {file.clone_url} {currentfolder}\Repos\{file.owner.login}\{file.name} ")
+        output.insert('1.0',f"{file.name} cloned from {file.clone_url} successfully\n",'warning')
         output.pack()
         i=i+1
 
