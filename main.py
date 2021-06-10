@@ -5,17 +5,18 @@ from github import Github
 import tkinter as gui
 import threading
 from tkinter import StringVar, messagebox
+from tkinter import filedialog
 
 root=gui.Tk()
 root.configure(background='black')
 root.title("Github-TraningData-Collector-for-pythonTransformers")
-root.geometry('700x450')
+root.geometry('700x700')
 
-access_token_string="invalid"
+## initial strings for access token & folder to save cloned repo
+access_token_string=""
+folder_for_cloning=""
 
-
-
-##Below code is for fetching the github access token from gui
+## First Label above
 token_var=gui.StringVar()
 token_label = gui.Label(root, text = 'Github-Access-Token', font=('calibre',10, 'bold'))
 token_label.configure(background='black',foreground='white')
@@ -42,6 +43,15 @@ query_span_tosearch.pack()
 query_span_var=StringVar()
 query_span_entry=gui.Entry(root,textvariable=query_span_var,font=('calibre',10,'normal'))
 query_span_entry.pack(padx=100)
+
+directory_clone_label=gui.Label(root,text="Folder for saving cloned repos",font=('calibre',10, 'bold'))
+directory_clone_label.configure(background='black',foreground='white')
+directory_clone_label.pack()
+directory_text_show=gui.Text(root,height=1,width=75,background='yellow',foreground='red')
+
+
+
+
 
 
 def getaccess():
@@ -75,12 +85,23 @@ def threadcreation():
 
 
 def showWarning():
-    if(query_num_loop.get()>0):
+    if(token_var.get()==""):
+        messagebox.showwarning('ERROR !!',"Please Enter valid github access token")
+    elif(query_num_loop.get()>0):
         messagebox.showwarning('WAIT !!!',"Script is running ,logs will be shown automatically in BLUE LogBox")
     else:
         messagebox.showwarning('ERROR!!!' , "Close the program & Enter number of queries greater than 0")
     
 
+def askingDIR():
+    folder_for_cloning=filedialog.askdirectory()
+    directory_text_show.insert("1.0",str(folder_for_cloning))
+    directory_text_show.pack()
+
+
+dirButton=gui.Button(root,height=1,width=20,text="Select Directory",command=askingDIR)
+dirButton.configure(activebackground="yellow")
+dirButton.pack()
     
 
 ## Creating multiple command list for single button btnRead
