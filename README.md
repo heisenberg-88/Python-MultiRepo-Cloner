@@ -1,4 +1,4 @@
-# Clone Multiple repos in specific timeframe from github for pythonTransformer code predictors
+# [DEPRECATED] Clone Multiple repos in specific timeframe from github for pythonTransformer code predictors
 
 This tool can be used to collect training dataset for pythonTransformers in Code predicting models.
 
